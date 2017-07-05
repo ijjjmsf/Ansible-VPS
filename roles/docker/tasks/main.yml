@@ -1,0 +1,27 @@
+---
+
+- name: Add GPG key for official Docker repository
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Get lsb_release
+  shell: lsb_release -cs
+  register: lsb_release
+
+- name: Add Docker repository to APT sources
+  apt_repository:
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ lsb_release.stdout }} stable"
+    state: present
+    update_cache: yes
+
+- name: Update repositories cache and install docker package
+  apt:
+    name: docker-ce
+    update_cache: yes
+
+- name: Restart and enable docker
+  service:
+    name: docker
+    state: started
+    enabled: yes

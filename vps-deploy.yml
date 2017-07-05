@@ -1,0 +1,13 @@
+---
+- hosts: all
+  become_user: root
+  roles:
+    - common
+
+- hosts: vps
+  become_user: root
+  roles:
+    - swap
+    - ssh
+    # - shadowsocks
+    - docker
