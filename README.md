@@ -1,4 +1,4 @@
-# Ansible-vps
+# Ansible-VPS
 
 1. Edit **inventory**, make it to your vps ip or domain name.
 2. Encrypt shadowsocks password if need, see [Tutorial](https://gist.github.com/jarrekk/f4661e666d9f5472878e964b3d200b72) for more information
