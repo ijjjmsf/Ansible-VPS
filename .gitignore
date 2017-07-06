@@ -17,3 +17,4 @@ tests.out
 vbox_host.cfg
 .DS_Store
 *.py[co]
+.vault_pass.txt

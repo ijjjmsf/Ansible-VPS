@@ -25,3 +25,7 @@
     name: docker
     state: started
     enabled: yes
+
+- name: Install docker-compose package
+  pip:
+    name: docker-compose
