@@ -1,0 +1,51 @@
+---
+
+- include_vars: token.yml
+
+- name: Download dropbox_uploader.sh
+  get_url:
+    url: https://raw.githubusercontent.com/jarrekk/Dropbox-Uploader/master/dropbox_uploader.sh
+    dest: /root/dropbox_uploader.sh
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create dropbox token file
+  template:
+    src: .dropbox_uploader.j2
+    dest: /root/.dropbox_uploader
+    owner: root
+    group: root
+    mode: 0600
+
+- name: Create data.sh
+  template:
+    src: data.sh.j2
+    dest: /root/data.sh
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Download database.tar.bz2
+  shell: /bin/bash /root/dropbox_uploader.sh download database.tar.bz2 /root/database.tar.bz2
+
+- name: Unarchive database.tar.bz2 to /data
+  unarchive:
+    src: /root/database.tar.bz2
+    dest: /
+    remote_src: True
+
+- name: Download letsencrypt.tar.bz2
+  shell: /bin/bash /root/dropbox_uploader.sh download letsencrypt.tar.bz2 /root/letsencrypt.tar.bz2
+
+- name: Unarchive letsencrypt.tar.bz2 to /etc/letsencrypt
+  unarchive:
+    src: /root/letsencrypt.tar.bz2
+    dest: /etc/
+    remote_src: True
+
+- name: Back up data every day at 1:00 am
+  cron:
+    name: "back up data"
+    hour: "1"
+    job: "/bin/sh /root/backup.sh -b"

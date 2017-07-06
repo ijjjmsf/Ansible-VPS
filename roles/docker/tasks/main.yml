@@ -26,6 +26,12 @@
     state: started
     enabled: yes
 
+- name: Delete dangling images every 10 min
+  cron:
+    name: "delete dangling images"
+    minute: "*/10"
+    job: "/usr/bin/docker image prune -f"
+
 - name: Install docker-compose package
   pip:
     name: docker-compose
