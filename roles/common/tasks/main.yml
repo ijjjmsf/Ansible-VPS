@@ -11,3 +11,16 @@
 - name: Remove dependencies that are no longer required
   apt:
     autoremove: yes
+
+- name: Install git package
+  apt:
+    name: git
+    update_cache: yes
+
+- name: Install zsh package
+  apt:
+    name: zsh
+    update_cache: yes
+
+- name: Install zsh
+  shell: curl -sL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash -
