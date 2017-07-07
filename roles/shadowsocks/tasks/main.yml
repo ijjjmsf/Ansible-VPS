@@ -1,6 +1,8 @@
 ---
 
-- include_vars: secret.yml
+- include_vars:
+  - secret.yml
+  - kcbtun_key.yml
 
 - name: Install python and python-pip
   apt:
@@ -33,5 +35,28 @@
 - name: Restart and enable shadowsocks
   service:
     name: shadowsocks
+    state: started
+    enabled: yes
+
+- name: Download kcptun-linux-amd64-20170525.tar.gz
+  get_url:
+    url: https://github.com/xtaci/kcptun/releases/download/v20170525/kcptun-linux-amd64-20170525.tar.gz
+    dest: /root/kcptun-linux-amd64-20170525.tar.gz
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Unarchive kcptun-linux-amd64-20170525.tar.gz
+  unarchive:
+    src: /root/kcptun-linux-amd64-20170525.tar.gz
+    dest: /root/
+    remote_src: True
+
+- name: Create kcptun service
+  template: src=kcptun.service.j2 dest=/etc/systemd/system/kcptun.service
+
+- name: Restart and enable kcptun
+  service:
+    name: kcptun
     state: started
     enabled: yes
