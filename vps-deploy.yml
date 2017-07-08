@@ -8,7 +8,7 @@
 - hosts: vps
   become_user: root
   roles:
-    - swap
+    # - swap
     - ssh
     - shadowsocks
     - docker
