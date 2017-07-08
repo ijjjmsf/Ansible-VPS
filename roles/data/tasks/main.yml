@@ -26,23 +26,28 @@
     group: root
     mode: 0644
 
-- name: Download database.tar.bz2
-  shell: /bin/bash /root/dropbox_uploader.sh download database.tar.bz2 /root/database.tar.bz2
+- name: Download data from Dropbox, unarchive it and remove tarball
+  shell: /bin/bash /root/dropbox_uploader.sh download {{ item }}.tar.bz2 /root/{{ item }}.tar.bz2
+  with_items:
+     - database
+     - letsencrypt
 
-- name: Unarchive database.tar.bz2 to /data
+- name: Unarchive data tarball
   unarchive:
-    src: /root/database.tar.bz2
-    dest: /
+    src: /root/{{ item.name }}.tar.bz2
+    dest: "{{ item.path }}"
     remote_src: True
+  with_items:
+     - {name: 'database', path: '/'}
+     - {name: 'letsencrypt', path: '/etc/'}
 
-- name: Download letsencrypt.tar.bz2
-  shell: /bin/bash /root/dropbox_uploader.sh download letsencrypt.tar.bz2 /root/letsencrypt.tar.bz2
-
-- name: Unarchive letsencrypt.tar.bz2 to /etc/letsencrypt
-  unarchive:
-    src: /root/letsencrypt.tar.bz2
-    dest: /etc/
-    remote_src: True
+- name: Remove data tarball
+  file:
+    path: /root/{{ item }}.tar.bz2
+    state: absent
+  with_items:
+     - database
+     - letsencrypt
 
 - name: Back up data every day at 1:00 am
   cron:
