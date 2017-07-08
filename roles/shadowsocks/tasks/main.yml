@@ -1,8 +1,7 @@
 ---
 
-- include_vars:
-  - secret.yml
-  - kcbtun_key.yml
+- include_vars: secret.yml
+- include_vars: kcptun_key.yml
 
 - name: Install python and python-pip
   apt:
