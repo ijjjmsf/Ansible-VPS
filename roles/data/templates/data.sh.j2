@@ -7,7 +7,6 @@ backup ()
 	/bin/bash /root/dropbox_uploader.sh upload /tmp/database.tar.bz2 /
 	cd /etc && tar zcf /tmp/letsencrypt.tar.bz2 letsencrypt
 	/bin/bash /root/dropbox_uploader.sh upload /tmp/letsencrypt.tar.bz2 /
-	rm -f /tmp/database.tar.bz2 /tmp/letsencrypt.tar.bz2
 }
 
 download ()
@@ -17,7 +16,6 @@ download ()
 	/bin/bash /root/dropbox_uploader.sh download database.tar.bz2
 	tar xf letsencrypt.tar.bz2 -C /etc/
 	tar xf database.tar.bz2 -C /
-  rm -f /tmp/database.tar.bz2 /tmp/letsencrypt.tar.bz2
 }
 
 while getopts "bd" opt; do
