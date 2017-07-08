@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 ARG=""
 
-function backup
+backup ()
 {
 	cd / && tar zcf /tmp/database.tar.bz2 data
 	/bin/bash /root/dropbox_uploader.sh upload /tmp/database.tar.bz2 /
@@ -10,13 +10,14 @@ function backup
 	rm -f /tmp/database.tar.bz2 /tmp/letsencrypt.tar.bz2
 }
 
-function download
+download ()
 {
 	cd /tmp
 	/bin/bash /root/dropbox_uploader.sh download letsencrypt.tar.bz2
 	/bin/bash /root/dropbox_uploader.sh download database.tar.bz2
-	tar xf -C /etc letsencrypt.tar.bz2
-	tar xf -C / database.tar.bz2
+	tar xf letsencrypt.tar.bz2 -C /etc/
+	tar xf database.tar.bz2 -C /
+  rm -f /tmp/database.tar.bz2 /tmp/letsencrypt.tar.bz2
 }
 
 while getopts "bd" opt; do

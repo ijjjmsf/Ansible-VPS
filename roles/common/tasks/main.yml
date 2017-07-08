@@ -29,5 +29,5 @@
   replace:
     path: /root/.zshrc
     regexp: '(ZSH_THEME=).*'
-    replace: '\1"bureau"'
+    replace: '\1"{{ zsh_theme }}"'
     backup: no

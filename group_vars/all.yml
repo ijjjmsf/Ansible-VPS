@@ -4,6 +4,9 @@
 # Ansible login user
 ansible_ssh_user: root
 
+# oh my zsh theme
+zsh_theme: bureau
+
 # Override any in your local ansible group_vars/swap.yml
 # Location of swapfile
 swap_path: "/swapfile"
@@ -22,3 +25,7 @@ swappiness: 10
 # How often inode info is removed from cache
 # Usually a frequent and costly lookup if not cached
 vfs_cache_pressure: 50
+
+# Which version of kcptun we need to download and use
+kcptun_version: 20170525
+# kcptun_version: 20160826

@@ -37,17 +37,17 @@
     state: started
     enabled: yes
 
-- name: Download kcptun-linux-amd64-20170525.tar.gz
+- name: Download kcptun-linux-amd64
   get_url:
-    url: https://github.com/xtaci/kcptun/releases/download/v20170525/kcptun-linux-amd64-20170525.tar.gz
-    dest: /root/kcptun-linux-amd64-20170525.tar.gz
+    url: https://github.com/xtaci/kcptun/releases/download/v{{ kcptun_version }}/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz
+    dest: /root/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz
     owner: root
     group: root
     mode: 0644
 
-- name: Unarchive kcptun-linux-amd64-20170525.tar.gz
+- name: Unarchive kcptun-linux-amd64
   unarchive:
-    src: /root/kcptun-linux-amd64-20170525.tar.gz
+    src: /root/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz
     dest: /root/
     remote_src: True
 
