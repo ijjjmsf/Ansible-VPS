@@ -1,6 +1,6 @@
 # Ansible-VPS
 
-Image: Ubuntu 16.04
+Image: Ubuntu 17.04
 
 ## Pre configuration
 
