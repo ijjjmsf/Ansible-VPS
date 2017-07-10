@@ -26,6 +26,7 @@ ssh root@vps.jarrekk.com apt-get install python -y
 	* config ssh server, only ssh-key can login
 * shadowsocks
 	* Install and config shadowsocks
+	* Tune kernel
 	* Turn on bbr(feature at Ubuntu 17.04)
 * docker
 	* Install docker
