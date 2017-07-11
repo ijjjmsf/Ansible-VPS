@@ -1,7 +1,8 @@
 ---
 
-- include_vars: secret.yml
-# - include_vars: kcptun_key.yml
+- include_vars: ss_secret.yml
+- include_vars: ss_method.yml
+- include_vars: ss_port.yml
 
 - name: Add tcp-bbr to kernel
   lineinfile:
@@ -47,31 +48,3 @@
     name: shadowsocks
     state: started
     enabled: yes
-
-# - name: Download kcptun-linux-amd64
-#   get_url:
-#     url: https://github.com/xtaci/kcptun/releases/download/v{{ kcptun_version }}/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz
-#     dest: /root/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz
-#     owner: root
-#     group: root
-#     mode: 0644
-
-# - name: Unarchive kcptun-linux-amd64
-#   unarchive:
-#     src: /root/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz
-#     dest: /root/
-#     remote_src: True
-
-# - name: Remove kcptun-linux-amd64 tarball
-#   file:
-#     path: /root/kcptun-linux-amd64-{{ kcptun_version }}.tar.gz
-#     state: absent
-
-# - name: Create kcptun service
-#   template: src=kcptun.service.j2 dest=/etc/systemd/system/kcptun.service
-
-# - name: Restart and enable kcptun
-#   service:
-#     name: kcptun
-#     state: started
-#     enabled: yes

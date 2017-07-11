@@ -1,9 +1,0 @@
-[Unit]
-Description=kcptun
-
-[Service]
-TimeoutStartSec=0
-ExecStart=/root/server_linux_amd64 -t '{{ groups['vps'][0] }}:8128' -l ":12345" -mode fast3 --key {{ kcbtun_key | replace('\n', '') }} --crypt aes
-
-[Install]
-WantedBy=multi-user.target
