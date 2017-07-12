@@ -11,6 +11,7 @@
   with_items:
     - net.core.default_qdisc=fq
     - net.ipv4.tcp_congestion_control=bbr
+  when: kernel_version_more_than_4_9
 
 - name: Enable tcp-bbr
   shell: sysctl -p

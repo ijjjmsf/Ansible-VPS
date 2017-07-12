@@ -26,6 +26,9 @@ swappiness: 10
 # Usually a frequent and costly lookup if not cached
 vfs_cache_pressure: 50
 
+# kernel version more than 4.9 can add bbr control
+kernel_version_more_than_4_9: true
+
 # Which version of kcptun we need to download and use
 kcptun_version: 20170525
 # kcptun_version: 20160826
