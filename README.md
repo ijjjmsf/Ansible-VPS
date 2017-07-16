@@ -20,13 +20,13 @@ ssh root@vps.jarrekk.com apt-get install python -y
 * common
 	* Update packages
 	* Install [oh my zsh](https://github.com/robbyrussell/oh-my-zsh)
+	* Tune kernel
 * swap
 	* make swap file for vps
 * ssh
 	* config ssh server, only ssh-key can login
 * shadowsocks
 	* Install and config shadowsocks
-	* Tune kernel
 	* Turn on bbr(feature at Ubuntu 17.04)
 * docker
 	* Install docker
