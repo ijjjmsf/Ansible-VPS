@@ -52,5 +52,6 @@
 - name: Back up data every day at 1:00 am
   cron:
     name: back up data
+    minute: 0
     hour: 1
     job: /bin/bash /root/data.sh -b
